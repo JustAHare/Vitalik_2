@@ -1,7 +1,7 @@
 import os
 import subprocess
 import yaml
-from loguru import logger
+import logging
 
 # Загрузка конфигурации
 with open('config.yaml', 'r', encoding='utf-8') as f:
@@ -9,7 +9,8 @@ with open('config.yaml', 'r', encoding='utf-8') as f:
 
 
 # Логирование
-logger.add(config['general']['training_log_path'], rotation="1 MB", level=config['general']['log_level'])
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 # Пути к файлам и скриптам
 MANUAL_INPUT_SCRIPT = "manual_input.py"

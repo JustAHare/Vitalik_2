@@ -1,14 +1,16 @@
 import yaml
 import os
 import pickle
-from loguru import logger
+import logging
+
+# Настройка стандартного логгера
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+logger = logging.getLogger(__name__)
+logger.info("Логирование заменено на стандартное.")
 
 # Загрузка конфигурации
-with open('config.yaml', 'r') as f:
+with open('config.yaml', 'r', encoding='utf-8') as f:
     config = yaml.safe_load(f)
-
-# Логирование
-logger.add(config['general']['agent_actions_log_path'], rotation="1 MB", level=config['general']['log_level'])
 
 # Пути к данным
 TRAINING_DATA_PATH = config['paths']['training_data']
