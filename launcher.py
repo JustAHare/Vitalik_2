@@ -4,8 +4,9 @@ import yaml
 from loguru import logger
 
 # Загрузка конфигурации
-with open('config.yaml', 'r') as f:
+with open('config.yaml', 'r', encoding='utf-8') as f:
     config = yaml.safe_load(f)
+
 
 # Логирование
 logger.add(config['general']['training_log_path'], rotation="1 MB", level=config['general']['log_level'])
